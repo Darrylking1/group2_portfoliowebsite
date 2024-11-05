@@ -1,327 +1,401 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CS Portfolio Hub</title>
-    <style>
-        :root {
-            --primary: #6366f1;
-            --secondary: #4f46e5;
-            --accent1: #ec4899;
-            --accent2: #14b8a6;
-            --accent3: #f59e0b;
-            --accent4: #8b5cf6;
-            --dark: #1f2937;
-            --light: #f8fafc;
-        }
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>CS Portfolio Hub</title>
+		<style>
+			:root {
+				--primary: #6366f1;
+				--secondary: #4f46e5;
+				--accent1: #ec4899;
+				--accent2: #14b8a6;
+				--accent3: #f59e0b;
+				--accent4: #8b5cf6;
+				--dark: #1f2937;
+				--light: #f8fafc;
+			}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-        }
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				font-family: "Inter", system-ui, -apple-system, sans-serif;
+			}
 
-        body {
-            background-color: var(--dark);
-            color: var(--light);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
+			body {
+				background-color: var(--dark);
+				color: var(--light);
+				min-height: 100vh;
+				overflow-x: hidden;
+			}
 
-        .noise {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAElBMVEUAAAD8/vz08vT09PT8+vz///+Tb6RWAAAABXRSTlMoKCh/f38K0v5ZAAAAH0lEQVQ4y2NgQAX8/PyYgPL/////R+FReFRAGQQkvADwqZX1pLP27QAAAABJRU5ErkJggg==');
-            opacity: 0.05;
-            z-index: 1;
-            pointer-events: none;
-        }
+			.noise {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAElBMVEUAAAD8/vz08vT09PT8+vz///+Tb6RWAAAABXRSTlMoKCh/f38K0v5ZAAAAH0lEQVQ4y2NgQAX8/PyYgPL/////R+FReFRAGQQkvADwqZX1pLP27QAAAABJRU5ErkJggg==");
+				opacity: 0.05;
+				z-index: 1;
+				pointer-events: none;
+			}
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem;
-            position: relative;
-            z-index: 2;
-        }
+			.container {
+				max-width: 1400px;
+				margin: 0 auto;
+				padding: 2rem;
+				position: relative;
+				z-index: 2;
+			}
 
-        header {
-            text-align: center;
-            padding: 4rem 0;
-        }
+			header {
+				text-align: center;
+				padding: 4rem 0;
+			}
 
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(to right, var(--primary), var(--accent1));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 1.2;
-        }
+			h1 {
+				font-size: 3.5rem;
+				margin-bottom: 1rem;
+				background: linear-gradient(
+					to right,
+					var(--primary),
+					var(--accent1)
+				);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				line-height: 1.2;
+			}
 
-        .subtitle {
-            font-size: 1.25rem;
-            color: #94a3b8;
-            max-width: 600px;
-            margin: 0 auto;
-        }
+			.subtitle {
+				font-size: 1.25rem;
+				color: #94a3b8;
+				max-width: 600px;
+				margin: 0 auto;
+			}
 
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin-top: 4rem;
-        }
+			.portfolio-grid {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 2rem;
+				margin-top: 4rem;
+			}
 
-        .portfolio-card {
-            position: relative;
-            border-radius: 1rem;
-            overflow: hidden;
-            aspect-ratio: 4/3;
-            cursor: pointer;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+			.portfolio-card {
+				position: relative;
+				border-radius: 1rem;
+				overflow: hidden;
+				aspect-ratio: 4/3;
+				cursor: pointer;
+				transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+			}
 
-        .portfolio-card:hover {
-            transform: translateY(-10px);
-        }
+			.portfolio-card:hover {
+				transform: translateY(-10px);
+			}
 
-        .portfolio-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
-            z-index: 1;
-        }
+			.portfolio-card::before {
+				content: "";
+				position: absolute;
+				inset: 0;
+				background: linear-gradient(
+					to bottom,
+					transparent 0%,
+					rgba(0, 0, 0, 0.8) 100%
+				);
+				z-index: 1;
+			}
 
-        .portfolio-card:nth-child(1) {
-            background: linear-gradient(45deg, var(--primary), var(--accent1));
-        }
+			.portfolio-card:nth-child(1) {
+				background: linear-gradient(
+					45deg,
+					var(--primary),
+					var(--accent1)
+				);
+			}
 
-        .portfolio-card:nth-child(2) {
-            background: linear-gradient(45deg, var(--accent2), var(--accent3));
-        }
+			.portfolio-card:nth-child(2) {
+				background: linear-gradient(
+					45deg,
+					var(--accent2),
+					var(--accent3)
+				);
+			}
 
-        .portfolio-card:nth-child(3) {
-            background: linear-gradient(45deg, var(--accent4), var(--primary));
-        }
+			.portfolio-card:nth-child(3) {
+				background: linear-gradient(
+					45deg,
+					var(--accent4),
+					var(--primary)
+				);
+			}
 
-        .portfolio-card:nth-child(4) {
-            background: linear-gradient(45deg, var(--accent3), var(--accent2));
-        }
+			.portfolio-card:nth-child(4) {
+				background: linear-gradient(
+					45deg,
+					var(--accent3),
+					var(--accent2)
+				);
+			}
 
-        .card-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 2rem;
-            z-index: 2;
-            transform: translateY(20px);
-            opacity: 0;
-            transition: all 0.3s ease-out;
-        }
+			.card-content {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				padding: 2rem;
+				z-index: 2;
+				transform: translateY(20px);
+				opacity: 0;
+				transition: all 0.3s ease-out;
+			}
 
-        .portfolio-card:hover .card-content {
-            transform: translateY(0);
-            opacity: 1;
-        }
+			.portfolio-card:hover .card-content {
+				transform: translateY(0);
+				opacity: 1;
+			}
 
-        .card-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
+			.card-title {
+				font-size: 1.5rem;
+				font-weight: 700;
+				margin-bottom: 0.5rem;
+			}
 
-        .card-subtitle {
-            font-size: 1rem;
-            color: #e2e8f0;
-            margin-bottom: 1rem;
-        }
+			.card-subtitle {
+				font-size: 1rem;
+				color: #e2e8f0;
+				margin-bottom: 1rem;
+			}
 
-        .card-tags {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
+			.card-tags {
+				display: flex;
+				gap: 0.5rem;
+				flex-wrap: wrap;
+			}
 
-        .tag {
-            padding: 0.25rem 0.75rem;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 9999px;
-            font-size: 0.875rem;
-        }
+			.tag {
+				padding: 0.25rem 0.75rem;
+				background-color: rgba(255, 255, 255, 0.1);
+				border-radius: 9999px;
+				font-size: 0.875rem;
+			}
 
-        .card-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.6;
-            transition: opacity 0.3s ease;
-        }
+			.card-image {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				opacity: 0.6;
+				transition: opacity 0.3s ease;
+			}
 
-        .portfolio-card:hover .card-image {
-            opacity: 0.3;
-        }
+			.portfolio-card:hover .card-image {
+				opacity: 0.3;
+			}
 
-        @media (max-width: 768px) {
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
+			@media (max-width: 768px) {
+				.portfolio-grid {
+					grid-template-columns: 1fr;
+				}
 
-            h1 {
-                font-size: 2.5rem;
-            }
+				h1 {
+					font-size: 2.5rem;
+				}
 
-            .subtitle {
-                font-size: 1.125rem;
-            }
-        }
+				.subtitle {
+					font-size: 1.125rem;
+				}
+			}
 
-        .cursor {
-            width: 20px;
-            height: 20px;
-            border: 2px solid var(--primary);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 999;
-            transition: transform 0.2s ease;
-            transform: translate(-50%, -50%);
-        }
+			.cursor {
+				width: 20px;
+				height: 20px;
+				border: 2px solid var(--primary);
+				border-radius: 50%;
+				position: fixed;
+				pointer-events: none;
+				z-index: 999;
+				transition: transform 0.2s ease;
+				transform: translate(-50%, -50%);
+			}
 
-        .cursor-follower {
-            width: 8px;
-            height: 8px;
-            background: var(--accent1);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 999;
-            transition: transform 0.1s ease;
-            transform: translate(-50%, -50%);
-        }
-    </style>
-</head>
-<body>
-    <div class="noise"></div>
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
+			.cursor-follower {
+				width: 8px;
+				height: 8px;
+				background: var(--accent1);
+				border-radius: 50%;
+				position: fixed;
+				pointer-events: none;
+				z-index: 999;
+				transition: transform 0.1s ease;
+				transform: translate(-50%, -50%);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="noise"></div>
+		<div class="cursor"></div>
+		<div class="cursor-follower"></div>
 
-    <div class="container">
-        <header>
-            <h1>Group 2 Portfolio Hub</h1>
-            <p class="subtitle">Discover the next generation of software engineers through their innovative projects and unique perspectives.</p>
-        </header>
+		<div class="container">
+			<header>
+				<h1>Group 2 Portfolio Hub</h1>
+				<p class="subtitle">
+					Discover the next generation of software engineers through
+					their innovative projects and unique perspectives.
+				</p>
+			</header>
 
-        <div class="portfolio-grid">
-            <a href="/group2_portfoliowebsite/darryl_page.html" class="portfolio-card">
-                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80" alt="Workspace" class="card-image">
-                <div class="card-content">
-                    <h2 class="card-title">Darryl Laud King</h2>
-                    <p class="card-subtitle">Cybersecurity Enthusiast</p>
-                </div>
-            </a>
+			<div class="portfolio-grid">
+				<a
+					href="/group2_portfoliowebsite/oheneba.html"
+					class="portfolio-card"
+				>
+					<img
+						src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80"
+						alt="Workspace"
+						class="card-image"
+					/>
+					<div class="card-content">
+						<h2 class="card-title">Steph Curry</h2>
+						<p class="card-subtitle">GOAT</p>
+					</div>
+				</a>
 
-            <a href="/group2_portfoliowebsite/Jesse.html" class="portfolio-card">
-                <img src="https://images.unsplash.com/photo-1550439062-609e1531270e?auto=format&fit=crop&w=800&q=80" alt="Frontend" class="card-image">
-                <div class="card-content">
-                    <h2 class="card-title">Jesse Adjetey</h2>
-                    <p class="card-subtitle">Web 3 Enthusiast</p>
-                </div>
-            </a>
+				<a
+					href="/group2_portfoliowebsite/darryl_page.html"
+					class="portfolio-card"
+				>
+					<img
+						src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80"
+						alt="Workspace"
+						class="card-image"
+					/>
+					<div class="card-content">
+						<h2 class="card-title">Darryl Laud King</h2>
+						<p class="card-subtitle">Cybersecurity Enthusiast</p>
+					</div>
+				</a>
 
-            <a href="/group2_portfoliowebsite/Jeffrey_hompage.html" class="portfolio-card">
-                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" alt="Backend" class="card-image">
-                <div class="card-content">
-                    <h2 class="card-title">Jeffery Churchill</h2>
-                    <p class="card-subtitle">Sports Enthusiast</p>
-                </div>
-            </a>
+				<a
+					href="/group2_portfoliowebsite/Jesse.html"
+					class="portfolio-card"
+				>
+					<img
+						src="https://images.unsplash.com/photo-1550439062-609e1531270e?auto=format&fit=crop&w=800&q=80"
+						alt="Frontend"
+						class="card-image"
+					/>
+					<div class="card-content">
+						<h2 class="card-title">Jesse Adjetey</h2>
+						<p class="card-subtitle">Web 3 Enthusiast</p>
+					</div>
+				</a>
 
-            <a href="/group2_portfoliowebsite/profiledavid.html" class="portfolio-card">
-                <img src="https://images.unsplash.com/photo-1551033406-611cf9a28f67?auto=format&fit=crop&w=800&q=80" alt="Mobile" class="card-image">
-                <div class="card-content">
-                    <h2 class="card-title">David Acquah</h2>
-                    <p class="card-subtitle">Mobile Developer </p>
-                </div>
-            </a>
-        </div>
-    </div>
+				<a
+					href="/group2_portfoliowebsite/Jeffrey_hompage.html"
+					class="portfolio-card"
+				>
+					<img
+						src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80"
+						alt="Backend"
+						class="card-image"
+					/>
+					<div class="card-content">
+						<h2 class="card-title">Jeffery Churchill</h2>
+						<p class="card-subtitle">Sports Enthusiast</p>
+					</div>
+				</a>
 
-    <script>
-        // Custom cursor
-        const cursor = document.querySelector('.cursor');
-        const follower = document.querySelector('.cursor-follower');
-        let posX = 0, posY = 0;
-        let mouseX = 0, mouseY = 0;
+				<a
+					href="/group2_portfoliowebsite/profiledavid.html"
+					class="portfolio-card"
+				>
+					<img
+						src="https://images.unsplash.com/photo-1551033406-611cf9a28f67?auto=format&fit=crop&w=800&q=80"
+						alt="Mobile"
+						class="card-image"
+					/>
+					<div class="card-content">
+						<h2 class="card-title">David Acquah</h2>
+						<p class="card-subtitle">Mobile Developer</p>
+					</div>
+				</a>
+			</div>
+		</div>
 
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
+		<script>
+			// Custom cursor
+			const cursor = document.querySelector(".cursor");
+			const follower = document.querySelector(".cursor-follower");
+			let posX = 0,
+				posY = 0;
+			let mouseX = 0,
+				mouseY = 0;
 
-            cursor.style.left = mouseX + 'px';
-            cursor.style.top = mouseY + 'px';
-        });
+			document.addEventListener("mousemove", (e) => {
+				mouseX = e.clientX;
+				mouseY = e.clientY;
 
-        function followCursor() {
-            posX += (mouseX - posX) / 12;
-            posY += (mouseY - posY) / 12;
-            
-            follower.style.left = posX + 'px';
-            follower.style.top = posY + 'px';
+				cursor.style.left = mouseX + "px";
+				cursor.style.top = mouseY + "px";
+			});
 
-            requestAnimationFrame(followCursor);
-        }
-        followCursor();
+			function followCursor() {
+				posX += (mouseX - posX) / 12;
+				posY += (mouseY - posY) / 12;
 
-        // Hover effects for portfolio cards
-        document.querySelectorAll('.portfolio-card').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
-                cursor.style.borderColor = 'white';
-                follower.style.transform = 'translate(-50%, -50%) scale(0.5)';
-            });
+				follower.style.left = posX + "px";
+				follower.style.top = posY + "px";
 
-            card.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-                cursor.style.borderColor = 'var(--primary)';
-                follower.style.transform = 'translate(-50%, -50%) scale(1)';
-            });
-        });
+				requestAnimationFrame(followCursor);
+			}
+			followCursor();
 
-        // Parallax effect for cards
-        document.addEventListener('mousemove', (e) => {
-            const cards = document.querySelectorAll('.portfolio-card');
-            const mouseX = e.clientX / window.innerWidth - 0.5;
-            const mouseY = e.clientY / window.innerHeight - 0.5;
+			// Hover effects for portfolio cards
+			document.querySelectorAll(".portfolio-card").forEach((card) => {
+				card.addEventListener("mouseenter", () => {
+					cursor.style.transform = "translate(-50%, -50%) scale(1.5)";
+					cursor.style.borderColor = "white";
+					follower.style.transform =
+						"translate(-50%, -50%) scale(0.5)";
+				});
 
-            cards.forEach(card => {
-                const rect = card.getBoundingClientRect();
-                const cardCenterX = rect.left + rect.width / 2;
-                const cardCenterY = rect.top + rect.height / 2;
-                
-                const angleX = (cardCenterY - e.clientY) / 30;
-                const angleY = (e.clientX - cardCenterX) / 30;
-                
-                card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) translateY(-10px)`;
-            });
-        });
+				card.addEventListener("mouseleave", () => {
+					cursor.style.transform = "translate(-50%, -50%) scale(1)";
+					cursor.style.borderColor = "var(--primary)";
+					follower.style.transform = "translate(-50%, -50%) scale(1)";
+				});
+			});
 
-        // Reset card transform on mouse leave
-        document.addEventListener('mouseleave', () => {
-            document.querySelectorAll('.portfolio-card').forEach(card => {
-                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
-            });
-        });
-    </script>
-</body>
+			// Parallax effect for cards
+			document.addEventListener("mousemove", (e) => {
+				const cards = document.querySelectorAll(".portfolio-card");
+				const mouseX = e.clientX / window.innerWidth - 0.5;
+				const mouseY = e.clientY / window.innerHeight - 0.5;
+
+				cards.forEach((card) => {
+					const rect = card.getBoundingClientRect();
+					const cardCenterX = rect.left + rect.width / 2;
+					const cardCenterY = rect.top + rect.height / 2;
+
+					const angleX = (cardCenterY - e.clientY) / 30;
+					const angleY = (e.clientX - cardCenterX) / 30;
+
+					card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) translateY(-10px)`;
+				});
+			});
+
+			// Reset card transform on mouse leave
+			document.addEventListener("mouseleave", () => {
+				document.querySelectorAll(".portfolio-card").forEach((card) => {
+					card.style.transform =
+						"perspective(1000px) rotateX(0) rotateY(0) translateY(0)";
+				});
+			});
+		</script>
+	</body>
 </html>
